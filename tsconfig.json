@@ -1,0 +1,38 @@
+{
+  "extends": "@quasar/app/tsconfig-preset",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "target": "es5",
+    "paths": {
+      "src/*": [
+        "./src/*"
+      ],
+      "app/*": [
+        "./*"
+      ],
+      "components/*": [
+        "./src/components/*"
+      ],
+      "layouts/*": [
+        "./src/layouts/*"
+      ],
+      "pages/*": [
+        "./src/pages/*"
+      ],
+      "assets/*": [
+        "./src/assets/*"
+      ],
+      "boot/*": [
+        "./src/boot/*"
+      ]
+    },
+  },
+  "include": [
+    "**/*.js",
+    "**/*.ts",
+    "**/*.vue"
+  ],
+  "files": [
+    "./src/shims-vue.d.ts"
+  ]
+}
