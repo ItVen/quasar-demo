@@ -10,7 +10,7 @@
       />
       <compostion-button
         @send="click2"
-        contexst="751733381@qq.com"
+        contexst="pw-core"
         :state="false"
         :value="10"
       />
@@ -45,8 +45,8 @@ export default defineComponent({
       console.log('click1');
       return this.$router.push('/test1');
     },
-    click2() {
-      console.log('click2');
+    click2: function () {
+      return this.$router.push('/pwcore');
     },
     click3() {
       console.log('click3');
