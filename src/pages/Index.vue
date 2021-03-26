@@ -43,9 +43,9 @@ export default defineComponent({
   methods: {
     click1() {
       console.log('click1');
-      return this.$router.push('/test1');
+      return this.$router.push('/login');
     },
-    click2: function () {
+    click2: function() {
       return this.$router.push('/pwcore');
     },
     click3() {
