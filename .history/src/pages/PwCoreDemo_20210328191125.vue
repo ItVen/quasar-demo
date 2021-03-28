@@ -19,11 +19,6 @@
         <br />
         <q-btn label="发起交易" @click="sendCkb()"></q-btn>
         <span>{{ this.txHash }}</span>
-        <br />
-
-        <div>
-          <q-btn no-caps label="clone Cell"></q-btn>
-        </div>
       </div>
     </div>
   </div>

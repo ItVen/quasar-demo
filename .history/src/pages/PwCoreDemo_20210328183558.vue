@@ -4,6 +4,7 @@
     <div class="fullscreen  flex flex-center">
       <div class="fixed-center column">
         <q-card class="my-card column">
+          <q-btn label="连接钱包" @click="test(web3Modal)"></q-btn>
           <q-btn label="连接钱包" @click="initPw()"></q-btn>
           <q-spinner-ios class="hidden" color="secondary" />
           <div>CKB_Adrress：{{ address }}</div>
@@ -17,51 +18,48 @@
         <br />
         <q-input outlined v-model="amount" label="交易金额" />
         <br />
-        <q-btn label="发起交易" @click="sendCkb()"></q-btn>
-        <span>{{ this.txHash }}</span>
-        <br />
-
-        <div>
-          <q-btn no-caps label="clone Cell"></q-btn>
-        </div>
+        <q-btn label="发起交易"></q-btn>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { defineComponent, ref } from '@vue/composition-api';
-import { test, send } from 'src/composition/PwCoreDemo';
+import { defineComponent, onMounted, ref } from '@vue/composition-api';
+import { test } from 'src/composition/PwCoreDemo';
+import Web3Modal from 'web3modal';
 import TopBar from 'src/components/topBar.vue';
 export default defineComponent({
   components: { TopBar },
-  setup() {
+  setup(props, context) {
+    const address = ref('');
+    const ckbBalance = ref('');
+    const toAddress = ref('');
+    const amount = ref('');
+    const web3Modal = ref(null);
+    onMounted(() => {
+      context.web3Modal = new Web3Modal({
+        network: 'mainnet',
+        cacheProvider: true
+      });
+    });
     return {
       show: false,
       test,
-      address: '',
-      ckbBalance: '',
-      toAddress: '',
-      amount: '',
-      send,
-      txHash: []
+      address,
+      ckbBalance,
+      toAddress,
+      amount,
+      web3Modal
     };
   },
   methods: {
     initPw: async function init() {
       const data = await test();
-      if (data.address) {
+      if (data && data.address) {
         this.address = data.address;
         this.ckbBalance = data.ckbBalance.toString();
       }
       console.log(this.address, this.ckbBalance);
-    },
-    sendCkb: async function sendCkb() {
-      if (!this.toAddress) return;
-      if (!this.amount) return;
-      const data = await send(this.toAddress, this.amount);
-      this.txHash.push(data);
-      console.log(this.txHash);
-      await this.initPw();
     }
   }
 });

@@ -18,12 +18,6 @@
         <q-input outlined v-model="amount" label="交易金额" />
         <br />
         <q-btn label="发起交易" @click="sendCkb()"></q-btn>
-        <span>{{ this.txHash }}</span>
-        <br />
-
-        <div>
-          <q-btn no-caps label="clone Cell"></q-btn>
-        </div>
       </div>
     </div>
   </div>
@@ -35,15 +29,18 @@ import TopBar from 'src/components/topBar.vue';
 export default defineComponent({
   components: { TopBar },
   setup() {
+    const address = ref('');
+    const ckbBalance = ref('');
+    const toAddress = ref('');
+    const amount = ref('');
     return {
       show: false,
       test,
-      address: '',
-      ckbBalance: '',
-      toAddress: '',
-      amount: '',
-      send,
-      txHash: []
+      address,
+      ckbBalance,
+      toAddress,
+      amount,
+      send
     };
   },
   methods: {
@@ -59,9 +56,7 @@ export default defineComponent({
       if (!this.toAddress) return;
       if (!this.amount) return;
       const data = await send(this.toAddress, this.amount);
-      this.txHash.push(data);
-      console.log(this.txHash);
-      await this.initPw();
+      console.log(data);
     }
   }
 });

@@ -63,6 +63,7 @@ function getChainData(chainId:number):chainsModel{
   }
   return chainData;
 }
+
 interface pwdata{
   ckbBalance:Amount | null,
   address:string|undefined
@@ -97,11 +98,4 @@ export async function test(web3Modal:Web3Modal):Promise<pwdata> {
         ckbBalance:null,
         address:undefined
       }
-}
-// 发起交易
-export async function send(address: string,
-    amount: string):Promise<string>{
-    if(!pw) return ''
-    const txHash = await pw.send(new Address(address, AddressType.ckb),new Amount(amount));
-    return txHash
 }

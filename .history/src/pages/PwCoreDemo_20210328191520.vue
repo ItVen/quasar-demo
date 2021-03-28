@@ -22,7 +22,7 @@
         <br />
 
         <div>
-          <q-btn no-caps label="clone Cell"></q-btn>
+          <q-btn label="clone Cell"></q-btn>
         </div>
       </div>
     </div>

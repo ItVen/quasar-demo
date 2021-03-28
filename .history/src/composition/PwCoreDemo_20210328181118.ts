@@ -10,7 +10,7 @@ import PWCore, {
 import Web3 from 'web3';
 import Web3Modal from 'web3modal';
 import supported from 'src/composition/chains'
-
+let pw = {};
 interface chainsModel{
     name:string,
     short_name: string,
@@ -34,7 +34,6 @@ const url = 'https://testnet.ckb.dev';
 // todo 检查是否有web3模块
 let web3Modal:Web3Modal|null = null;
 let web3:Web3|null = null;
-let pw :PWCore|null = null;
 const chainId = 1;
 function haveWeb3():Web3Modal{
   web3Modal = new Web3Modal({
@@ -63,15 +62,16 @@ function getChainData(chainId:number):chainsModel{
   }
   return chainData;
 }
+
 interface pwdata{
   ckbBalance:Amount | null,
   address:string|undefined
 
 } 
-export async function test(web3Modal:Web3Modal):Promise<pwdata> {
-  web3Modal = haveWeb3();
+export async function test():Promise<pwdata> {
+   web3Modal = haveWeb3();
+  console.log(web3Modal, web3Modal.cachedProvider);
   if (web3Modal.cachedProvider) {
-     console.log('--in-------');
       const provider = await web3Modal.connect();
       web3 = new Web3(provider);
       console.log('web3:',web3);
@@ -91,17 +91,12 @@ export async function test(web3Modal:Web3Modal):Promise<pwdata> {
         ckbBalance,
         address
       }
-  }
-  console.log('-----out----');
-  return {
+  }else{
+    return {
         ckbBalance:null,
         address:undefined
       }
-}
-// 发起交易
-export async function send(address: string,
-    amount: string):Promise<string>{
-    if(!pw) return ''
-    const txHash = await pw.send(new Address(address, AddressType.ckb),new Amount(amount));
-    return txHash
+   
+  }
+  
 }

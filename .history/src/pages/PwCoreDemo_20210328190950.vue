@@ -19,11 +19,6 @@
         <br />
         <q-btn label="发起交易" @click="sendCkb()"></q-btn>
         <span>{{ this.txHash }}</span>
-        <br />
-
-        <div>
-          <q-btn no-caps label="clone Cell"></q-btn>
-        </div>
       </div>
     </div>
   </div>
@@ -43,7 +38,7 @@ export default defineComponent({
       toAddress: '',
       amount: '',
       send,
-      txHash: []
+      txHash: ''
     };
   },
   methods: {
@@ -58,10 +53,9 @@ export default defineComponent({
     sendCkb: async function sendCkb() {
       if (!this.toAddress) return;
       if (!this.amount) return;
-      const data = await send(this.toAddress, this.amount);
-      this.txHash.push(data);
+      this.txHash = await send(this.toAddress, this.amount);
       console.log(this.txHash);
-      await this.initPw();
+      this.initPw();
     }
   }
 });

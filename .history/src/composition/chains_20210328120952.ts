@@ -1,5 +1,20 @@
-const supportedChains = [
-  {
+export interface chainsModel{
+    name:string,
+    short_name: string,
+    chain: string,
+    network: string,
+    chain_id: number,
+    network_id: number,
+    rpc_url: string,
+    native_currency: {
+      symbol: string,
+      name: string,
+      decimals: string,
+      contractAddress: string,
+      balance: string,
+    },
+}
+const eth = {
     name: 'Ethereum Mainnet',
     short_name: 'eth',
     chain: 'ETH',
@@ -14,8 +29,9 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+
+const rop= {
     name: 'Ethereum Ropsten',
     short_name: 'rop',
     chain: 'ETH',
@@ -30,8 +46,8 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+  const rin =  {
     name: 'Ethereum Rinkeby',
     short_name: 'rin',
     chain: 'ETH',
@@ -46,8 +62,8 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+  const gor = {
     name: 'Ethereum Görli',
     short_name: 'gor',
     chain: 'ETH',
@@ -62,8 +78,8 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+  const rsk ={
     name: 'RSK Mainnet',
     short_name: 'rsk',
     chain: 'RSK',
@@ -78,8 +94,8 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+  const kov ={
     name: 'Ethereum Kovan',
     short_name: 'kov',
     chain: 'ETH',
@@ -94,8 +110,8 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+  const etc ={
     name: 'Ethereum Classic Mainnet',
     short_name: 'etc',
     chain: 'ETC',
@@ -110,8 +126,8 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+   const poa ={
     name: 'POA Network Sokol',
     short_name: 'poa',
     chain: 'POA',
@@ -126,8 +142,8 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+  const skl = {
     name: 'POA Network Core',
     short_name: 'skl',
     chain: 'POA',
@@ -142,8 +158,8 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+  const xdai = {
     name: 'xDAI Chain',
     short_name: 'xdai',
     chain: 'POA',
@@ -158,8 +174,8 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-  {
+  }
+  const clo = {
     name: 'Callisto Mainnet',
     short_name: 'clo',
     chain: 'callisto',
@@ -174,7 +190,19 @@ const supportedChains = [
       contractAddress: '',
       balance: '',
     },
-  },
-];
+  }
 
-export default supportedChains;
+const supported:Array<chainsModel> = [
+  eth,
+  rop,
+  rin,
+  gor,
+  rsk,
+  kov,
+  etc,
+  poa,
+  skl,
+  xdai,
+  clo,
+];
+export default supported;

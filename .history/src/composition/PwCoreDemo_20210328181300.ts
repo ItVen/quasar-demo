@@ -63,15 +63,17 @@ function getChainData(chainId:number):chainsModel{
   }
   return chainData;
 }
+
 interface pwdata{
   ckbBalance:Amount | null,
   address:string|undefined
 
 } 
-export async function test(web3Modal:Web3Modal):Promise<pwdata> {
-  web3Modal = haveWeb3();
+export async function test():Promise<pwdata> {
+   web3Modal = haveWeb3();
+   console.log('---------');
+  console.log(web3Modal, web3Modal.cachedProvider);
   if (web3Modal.cachedProvider) {
-     console.log('--in-------');
       const provider = await web3Modal.connect();
       web3 = new Web3(provider);
       console.log('web3:',web3);
@@ -92,16 +94,8 @@ export async function test(web3Modal:Web3Modal):Promise<pwdata> {
         address
       }
   }
-  console.log('-----out----');
   return {
         ckbBalance:null,
         address:undefined
       }
-}
-// 发起交易
-export async function send(address: string,
-    amount: string):Promise<string>{
-    if(!pw) return ''
-    const txHash = await pw.send(new Address(address, AddressType.ckb),new Amount(amount));
-    return txHash
 }

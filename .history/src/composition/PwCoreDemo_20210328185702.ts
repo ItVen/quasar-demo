@@ -100,8 +100,9 @@ export async function test(web3Modal:Web3Modal):Promise<pwdata> {
 }
 // 发起交易
 export async function send(address: string,
-    amount: string):Promise<string>{
-    if(!pw) return ''
-    const txHash = await pw.send(new Address(address, AddressType.ckb),new Amount(amount));
-    return txHash
+    amount: string):Promise<any|boolean>{
+    if(!pw) return false
+    const data = await pw.send(new Address(address, AddressType.ckb),new Amount(amount));
+    console.log(data)
+    return data
 }
