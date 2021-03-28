@@ -22,7 +22,7 @@ export default {
   props: {
     contexst: String,
     state: String,
-    value: Number
+    value: Number,
   },
   setup(props) {
     return {
