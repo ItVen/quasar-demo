@@ -32,7 +32,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@vue/composition-api';
-import StateButton from 'src/components/StateButton.vue';
+import StateButton from 'src/components/StateButtons.vue';
 
 export default defineComponent({
   components: { StateButton },

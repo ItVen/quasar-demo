@@ -26,7 +26,7 @@
 
 <script lang="ts">
 import { defineComponent, ref } from '@vue/composition-api';
-import TopBar from 'src/components/TopBar.vue';
+import TopBar from 'src/components/TopBars.vue';
 import { isEmail } from 'src/composition/login';
 export default defineComponent({
   name: 'Login',

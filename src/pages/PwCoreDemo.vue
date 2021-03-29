@@ -30,8 +30,8 @@
 </template>
 <script>
 import { defineComponent, ref } from '@vue/composition-api';
-import { initPWCore, send } from 'src/composition/pwCoreDemo';
-import TopBar from 'src/components/TopBar.vue';
+import { initPWCore, send } from 'src/composition/pwCoreTest';
+import TopBar from 'src/components/TopBars.vue';
 export default defineComponent({
   components: { TopBar },
   setup() {
