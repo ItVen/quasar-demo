@@ -53,6 +53,7 @@ function getNetwork():string{
  * 根据chainId 返回支持的区块信息
  * @param chainId 
  * @returns 
+ * 
  */ 
 function getChainData(chainId:number):ChainsModel{
   const chainData = supported.filter((chain)=>chain.chainId == chainId)[0]
