@@ -29,13 +29,17 @@ interface ChainsModel{
 
 // CKB 主网：https://mainnet.ckb.dev
 // CKB 测试网：https://testnet.ckb.dev
+// const url = 'https://mainnet.ckb.dev';
 const url = 'https://testnet.ckb.dev';
 let web3Modal:Web3Modal|undefined = undefined;
 let web3:Web3|undefined = undefined;
 let pw :PWCore|undefined = undefined;
 const chainId = 1;
 async function haveWeb3(): Promise<Web3>{
-  if(web3) return web3
+  if(web3) {
+    console.log(web3.currentProvider)
+    return web3
+  }
   const providerOptions = {};
   web3Modal = new Web3Modal({
       network: getNetwork(),
@@ -101,6 +105,18 @@ export async function initPWCore():Promise<PWCoreData> {
 export async function send(address: string,
     amount: string):Promise<string>{
     if(!pw) return ''
-    const txHash = await pw.send(new Address(address, AddressType.ckb),new Amount(amount));
+  
+    const ckbAddress = new Address(address, AddressType.ckb);
+    console.log(ckbAddress)
+    const txHash = await pw.send(ckbAddress,new Amount(amount));
     return txHash
+}
+/**
+ * 
+ * 断开连接
+ */ 
+export async function disconnect() {
+  await PWCore.provider.close();
+  if(web3Modal) web3Modal.clearCachedProvider();
+  console.log('disconnect')
 }

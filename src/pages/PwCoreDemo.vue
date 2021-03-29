@@ -3,6 +3,8 @@
     <top-bar :showL="true" :showR="false" :leftUrl="'/'"></top-bar>
     <div class="fullscreen  flex flex-center">
       <div class="fixed-center column">
+        <q-btn label="断开连接" @click="disconnect"></q-btn>
+        <br />
         <q-card class="my-card column">
           <q-btn label="连接钱包" @click="initPw"></q-btn>
           <q-spinner-ios class="hidden" color="secondary" />
@@ -30,7 +32,7 @@
 </template>
 <script>
 import { defineComponent, ref } from '@vue/composition-api';
-import { initPWCore, send } from 'src/composition/pwCoreTest';
+import { initPWCore, send, disconnect } from 'src/composition/pwCoreTest';
 import TopBar from 'src/components/TopBars.vue';
 export default defineComponent({
   components: { TopBar },
@@ -38,6 +40,7 @@ export default defineComponent({
     return {
       show: false,
       initPWCore,
+      disconnect,
       address: ref(''),
       ckbBalance: ref(''),
       toAddress: ref(''),
@@ -57,7 +60,7 @@ export default defineComponent({
     },
     async sendCkb() {
       if (!this.toAddress) return;
-      if (!this.amount) return;
+      if (this.amount < 61) return;
       const data = await send(this.toAddress, this.amount);
       this.txHash.push(data);
       await this.initPw();
